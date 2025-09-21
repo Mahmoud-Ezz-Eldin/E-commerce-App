@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { CookieService } from 'ngx-cookie-service';
 import { RegisterService } from '../../../core/auth/services/register.service';
 import { DecodedToken } from '../../../core/models/decoded-token.interface';
 
@@ -18,14 +17,13 @@ import { DecodedToken } from '../../../core/models/decoded-token.interface';
 })
 export class CartService {
   private readonly httpClient = inject(HttpClient);
-  private readonly cookieService = inject(CookieService);
   private readonly registerService = inject(RegisterService);
 
   // userData: DecodedToken = this.registerService.decodeToken() as DecodedToken;
   userData: WritableSignal<DecodedToken> = signal(
     this.registerService.decodeToken() as DecodedToken
   );
-  userId: Signal<string> = computed(() => this.userData()?.id);
+  userId: Signal<string> = computed(() => this.userData().id);
 
   cartCounter: WritableSignal<number> = signal(0);
   /* Can't find an api to get numOfCart Items after loggin so it appears

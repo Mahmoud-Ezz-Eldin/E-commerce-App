@@ -1,0 +1,15 @@
+export const environment = {
+  baseUrl: 'https://ecommerce.routemisr.com/api/v1/',
+  endPointProducts: 'products/',
+  endPointCategories: 'categories/',
+  endPointAuth: 'auth/',
+  endPointSignUp: 'signup/',
+  endPointSignIn: 'signin/',
+  endPointCart: 'cart/',
+  endPointOrders: 'orders/',
+  endPointCheckout: 'checkout-session/',
+  endPointForgot: 'forgotPasswords/',
+  endPointVerifyCode: 'verifyResetCode/',
+  endPointResetPassword: 'resetPassword/',
+  port: '?url=http://localhost:4200',
+};

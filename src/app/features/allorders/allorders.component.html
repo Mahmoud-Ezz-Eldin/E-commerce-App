@@ -1,0 +1,97 @@
+<section>
+  <div class="container overflow-auto">
+    @if(purchases().length >0){
+    <h1 class="text-5xl text-center">Purchases</h1>
+    @for (purchase of purchases(); track $index) {
+    <div
+      class="border-4 border-gray-500 shadow-md shadow-main rounded-lg p-4 my-6"
+    >
+      <div class="flex flex-col bg-lightBg dark:bg-darkBgFill gap-2 p-4">
+        <h2 class="text-3xl font-extrabold">
+          Purchase Number: <span class="text-2xl">{{ $index + 1 }}</span>
+        </h2>
+        <h3 class="text-2xl">
+          Purchase ID:
+          <span class="text-lg">{{ purchase.id }}</span>
+        </h3>
+        <h3 class="text-2xl">
+          Total Items:
+          <span class="text-lg">{{ purchase.cartItems.length }}</span>
+        </h3>
+        <h3 class="text-2xl">
+          Payment Method:
+          <span class="text-lg">{{ purchase.paymentMethodType }}</span>
+        </h3>
+        <h3 class="text-2xl">
+          Total Price:
+          <span class="text-lg">{{
+            purchase.totalOrderPrice | currency : "GBP"
+          }}</span>
+        </h3>
+        <h3 class="text-2xl">
+          Payment Date:
+          <span class="text-lg">{{
+            purchase.paidAt | date : "dd-MM-yyyy"
+          }}</span>
+          <span class="text-sm">
+            at: {{ purchase.paidAt | date : "shortTime" }}</span
+          >
+        </h3>
+
+        <h3 class="text-2xl">
+          Address:
+          <span class="text-lg">{{ purchase.shippingAddress.city }}</span>
+        </h3>
+        <h3 class="text-2xl">
+          Derlivery status:
+          <span class="text-lg"
+            >@if (purchase.isDelivered) { Delivered}@else { Not Delivered}</span
+          >
+        </h3>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 border-2 rounded-2xl border-main gap-3 p-4"
+      >
+        @for (item of purchase.cartItems; track $index) {
+        <div
+          class="flex flex-col border border-main rounded-xl overflow-hidden"
+        >
+          <img
+            [src]="item.product.imageCover"
+            [alt]="item.product.title"
+            class="w-100 self-center"
+          />
+
+          <div class="p-4">
+            <h4
+              class="text-xl line-clamp-1 font-header text-main font-bold text-center"
+            >
+              {{ item.product.title }}
+            </h4>
+            <h5 class="font-header font-bold text-lg text-main">
+              Price:
+              <span class="text-sm">{{ item.price | currency : "GBP" }} </span>
+            </h5>
+            <h5 class="font-header font-bold text-lg text-main">
+              Quantity:
+              <span class="text-sm">{{ item.count }} </span>
+            </h5>
+            <h5 class="font-header font-bold text-lg text-main">
+              Total Price:
+              <span class="text-sm">{{
+                item.count * item.price | currency : "GBP"
+              }}</span>
+            </h5>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }}@else {
+    <p class="text-6xl text-main font-header text-center my-60">
+      You have no orders yet ...
+    </p>
+    }
+  </div>
+</section>

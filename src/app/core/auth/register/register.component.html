@@ -1,0 +1,72 @@
+<section class="py-12">
+  <div
+    class="bg-light-bg shadow-main shadow w-3/4 md:w-1/2 mx-auto rounded-xl py-8"
+  >
+    <h1 class="text-center text-5xl pb-4">Register</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submitData()">
+      <app-input
+        [control]="registerForm.get('name')"
+        [typeInput]="'text'"
+        [idInput]="'name'"
+        [label]="'name'"
+      ></app-input>
+
+      <app-input
+        [control]="registerForm.get('email')"
+        [typeInput]="'text'"
+        [idInput]="'email'"
+        [label]="'email'"
+      ></app-input>
+
+      <app-input
+        [control]="registerForm.get('password')"
+        [typeInput]="'password'"
+        [idInput]="'password'"
+        [label]="'password'"
+      ></app-input>
+
+      <app-input
+        [control]="registerForm.get('rePassword')"
+        [typeInput]="'password'"
+        [idInput]="'rePassword'"
+        [label]="'Confirm Password'"
+      ></app-input>
+
+      <app-input
+        [control]="registerForm.get('phone')"
+        [typeInput]="'tel'"
+        [idInput]="'phone'"
+        [label]="'mobile number'"
+      ></app-input>
+
+      <button
+        [disabled]="registerForm.invalid"
+        class="my-btn w-[80%] mx-auto block mb-6"
+        type="submit"
+      >
+        Submit @if (isLoading()) {
+        <span
+          class="fa fa-spinner animate-spin text-lightPrimary dark:text-darkPrimary"
+        ></span>
+        }
+      </button>
+
+      @if (errorMessage()) {
+      <p
+        class="p-2 rounded-lg bg-red-300 text-red-600 w-[80%] mx-auto text-center"
+      >
+        {{ errorMessage() }}
+      </p>
+
+      } @if (registerSuccess()) {
+      <p
+        class="p-2 my-2 rounded-lg bg-green-300 text-green-600 w-[80%] mx-auto text-center"
+      >
+        Account Created Successfully
+        <span><i class="fa-solid fa-check text-green-600"></i></span>
+      </p>
+      }
+    </form>
+  </div>
+</section>

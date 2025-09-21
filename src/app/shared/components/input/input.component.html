@@ -1,0 +1,93 @@
+<div class="relative z-0 w-[80%] mx-auto my-7">
+  @if (element==='input') {<input
+    [formControl]="control"
+    [type]="showpass() ? 'text' : typeInput"
+    [id]="idInput"
+    placeholder=" "
+    class="floating-input peer mb-4 border"
+    [class]="{
+      'border-green-700': control?.valid,
+      'border-red-700': control?.invalid && control?.touched,
+    }"
+  />
+  }@else if (element==='text') {
+  <textarea
+    [formControl]="control"
+    [id]="idInput"
+    placeholder=" "
+    class="floating-input peer mb-4"
+    [class]="{
+      'border-green-700': control?.valid,
+      'border-red-700': control?.invalid && control?.touched,
+    }"
+  ></textarea
+  >}
+
+  <label
+    [for]="idInput"
+    class="floating-label capitalize"
+    [class]="{
+      'text-green-700': control?.valid,
+      'text-red-700': control?.invalid && control?.touched
+    }"
+  >
+    {{ label }}
+  </label>
+  @if (idInput=='password'||idInput=='rePassword') {
+  <span
+    class="absolute top-0 right-0 translate-y-1/2 -translate-x-1/2 cursor-pointer text-main"
+    (click)="showpass.set(!showpass())"
+    ><i
+      class="fa-solid"
+      [class]="{
+        'fa-eye': !showpass(),
+        'fa-eye-slash': showpass()
+      }"
+    ></i>
+  </span>
+  } @if(control?.errors && control?.touched) {
+  <div
+    class="flex p-4 mb-6 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-100 dark:text-red-400"
+    role="alert"
+  >
+    <svg
+      class="shrink-0 inline w-4 h-4 me-3 mt-[2px] dark:text-red-800"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+      />
+    </svg>
+    <span class="sr-only">Danger</span>
+    <div>
+      <span class="font-medium dark:text-red-800">Please make sure:</span>
+      <ul class="mt-1.5 list-disc list-inside dark:text-red-600">
+        @if (control?.hasError('pattern')&& idInput=='name') {
+        <li>Name Should be only characters</li>
+        } @if (control?.hasError('required')) {
+        <li>Input is required</li>
+        } @if(control?.hasError('minlength')){
+        <li>Input must contains at least 3 characters</li>
+        } @if(control?.hasError('maxlength')){
+        <li>Input must contains less than 20 characters</li>
+        } @if (control?.hasError('email')) {
+        <li>Please enter a valid email</li>
+        } @if (control?.hasError('pattern') && idInput=='password') {
+        <li>
+          Password must be 10-20 characters long and contain at least one letter
+        </li>
+        }@if (control?.hasError('pattern') && idInput=='phone') {
+        <li>
+          Enter Egyptian mobile number: 010/011/012/015 + 8 digits. +20 optional
+        </li>
+        } @if(control.hasError('mismatch')){
+        <li>Re-password must same as passowrd</li>
+        }
+      </ul>
+    </div>
+  </div>
+  }
+</div>

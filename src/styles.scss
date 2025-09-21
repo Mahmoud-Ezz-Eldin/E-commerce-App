@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+// @import "tailwindcss";
+@import "flowbite/src/themes/default";
+// @plugin "flowbite/plugin";
+// @source "../node_modules/flowbite";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+:root {
+  --color-main: #7f66d0;
+  --color-mainActive: #5a4799;
+}
+
+/*Fonts*/
+/*Header Font*/
+@font-face {
+  font-family: "Oregano";
+  src: url("./assets/fonts/Oregano-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Oregano-Regular.woff") format("woff");
+  font-display: swap;
+}
+// @font-face {
+//   font-family: "OreganoItalic";
+//   src: url("./assets/fonts/Oregano-Italic.woff2") format("woff2"),
+//     url("./assets/fonts/Oregano-Italic.woff") format("woff");
+//   font-style: italic;
+//   font-display: swap;
+// }
+/*Main Font*/
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Inter-Regular.woff") format("woff");
+  font-display: swap;
+}
+// @font-face {
+//   font-family: "InterItalic";
+//   src: url(./assets/fonts/Inter-Italic.woff2) format("woff2"),
+//     url(./assets/fonts/Inter-Italic.woff) format("woff");
+//   font-display: swap;
+// }
+
+body {
+  font-family: "Inter";
+}
+
+h1,
+h2,
+h3,
+a {
+  font-family: "Oregano";
+}
+h4,
+h5,
+h6,
+p,
+span,
+button {
+  font-family: "Inter";
+}
+
+.font-header {
+  font-family: "Oregano";
+}
+.font-p {
+  font-family: "Inter";
+}
+
+/*Owl-Carousel*/
+.owl-theme .owl-nav [class*="owl-"] {
+  background-color: transparent;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background-color: transparent;
+}
+.owl-theme .owl-dots .owl-dot span {
+  background-color: var(--color-main);
+}

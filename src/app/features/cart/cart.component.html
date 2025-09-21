@@ -1,0 +1,88 @@
+<section>
+  <div class="container">
+    @if (cartDetails()?.products?.length!==0) {
+    <div class="flex gap-2 items-center">
+      <h1 class="text-3xl">Cart</h1>
+      <span class="text-md font-bold">
+        {{ cartDetails()?.products?.length }}</span
+      >
+    </div>
+    <div class="grid sm:grid-cols-1 md:grid-cols-[80%_auto] gap-6">
+      <div class="flex flex-col gap-3">
+        @for (product of cartDetails()?.products; track product.product._id) {
+        <div
+          class="grid sm:grid-cols-1 md:grid-cols-[10%_40%_auto] p-3 shadow-md shadow-main rounded-lg bg-lightBg dark:bg-darkBgFill gap-4 border border-main"
+        >
+          <div class="flex fa-align-center">
+            <img
+              [src]="product.product.imageCover"
+              [alt]="product.product.title"
+              class="w-full"
+            />
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <h3 class="text-2xl self">{{ product.product.title }}</h3>
+            <div class="flex text-center items-center justify-center">
+              <button
+                (click)="
+                  updateProductCount(product.product._id, product.count - 1)
+                "
+                class="my-btn h-full rounded-e-none hover:border-none active:border-none focus:ring-0 active:scale-100"
+              >
+                <i class="fa fa-minus"></i>
+              </button>
+              <span class="bg-main h-full text-darkPrimary flex items-center">{{
+                product.count
+              }}</span>
+              <button
+                (click)="
+                  updateProductCount(product.product._id, product.count + 1)
+                "
+                class="my-btn h-full rounded-s-none hover:border-none active:border-none focus:ring-0 active:scale-100"
+              >
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+            <button (click)="removeCartItem(product.product._id)">
+              <i
+                class="fa fa-trash-can text-xl text-main hover:text-mainHover active:text-mainActive active:scale-70 transition-all duration-300 ease-in-out"
+              ></i>
+            </button>
+          </div>
+          <span class="flex justify-self-end items-center">{{
+            product.price * product.count | currency : "GBP"
+          }}</span>
+        </div>
+        }
+      </div>
+      <div class="self-start sticky top-24">
+        <div
+          class="flex flex-col p-3 shadow-md shadow-main border border-main rounded-lg bg-lightBg dark:bg-darkBgFill gap-4"
+        >
+          <h2 class="text-3xl">Order Summary</h2>
+          <div class="flex justify-between">
+            <span>Price</span>
+            <span>{{ cartDetails()?.totalCartPrice | currency : "GBP" }}</span>
+          </div>
+          <button [routerLink]="['/checkout', cartId()]" class="my-btn">
+            Proceed To Checkout
+          </button>
+          <button
+            (click)="clearCart()"
+            class="my-btn bg-red-600 border-0 active:border-none active:bg-red-800 focus:ring-0 w-full"
+          >
+            Clear Cart
+            <i class="fa fa-trash-can text-xl text-white"></i>
+          </button>
+        </div>
+        <div></div>
+      </div>
+    </div>
+    }@else{
+    <p class="text-6xl text-main font-header text-center my-60">
+      Your cart is already empty
+    </p>
+
+    }
+  </div>
+</section>

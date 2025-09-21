@@ -1,0 +1,46 @@
+<section>
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-[30%_auto] items-center gap-8">
+      <div>
+        <owl-carousel-o [options]="customOptions">
+          @for (productImage of productDetails.images; track $index) {
+          <ng-template carouselSlide>
+            <div class="border-5 border-main rounded-2xl overflow-hidden">
+              <img
+                [src]="productImage"
+                [alt]="productDetails.description"
+                class="w-full"
+              />
+            </div>
+          </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h2 class="text-4xl pb-6">{{ productDetails.title }}</h2>
+        <h3 class="text-2xl text-lightSecondary dark:text-darkSecondary">
+          {{ productDetails.description }}
+        </h3>
+        <span
+          class="text-1xl text-lightSecondary dark:text-darkSecondary font-extrabold"
+          >{{ productDetails.category.name }}</span
+        >
+        <span
+          class="text-1xl text-lightSecondary dark:text-darkSecondary font-bold"
+          >Price : {{ productDetails.price }}</span
+        >
+        <span class="font-medium"
+          >{{ productDetails.ratingsAverage }}
+          <i class="fas fa-star text-yellow-400"></i
+        ></span>
+        <button
+          (click)="addProductToCart(productDetails._id)"
+          class="my-btn w-full"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

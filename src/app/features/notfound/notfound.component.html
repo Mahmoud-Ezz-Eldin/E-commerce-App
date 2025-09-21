@@ -1,0 +1,22 @@
+<section>
+  <div class="container">
+    <div
+      class="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-center px-4"
+    >
+      <h1 class="text-9xl font-extrabold text-gray-800">404</h1>
+      <p class="text-2xl md:text-3xl font-semibold mt-4 text-gray-700">
+        Page Not Found
+      </p>
+      <p class="mt-2 text-gray-500">
+        Sorry, the page you’re looking for doesn’t exist.
+      </p>
+
+      <a
+        routerLink="/home"
+        class="mt-6 inline-block px-6 py-3 text-white bg-main rounded-2xl shadow-md hover:bg-mainHover active:bg-mainActive active:scale-90 transition cursor-pointer"
+      >
+        @if(token){ Go to Home page }@else { Go back to login }
+      </a>
+    </div>
+  </div>
+</section>

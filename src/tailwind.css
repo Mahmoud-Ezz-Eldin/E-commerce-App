@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main: #7f66d0;
+
+  --color-lightBg: #f5f5f5;
+  --color-darkBg: #121212;
+
+  --color-lightPrimary: #222222;
+  --color-lightSecondary: #555555;
+
+  --color-darkPrimary: #eeeeee;
+  --color-darkSecondary: #bbbbbb;
+  --color-darkBgFill: #1e2939;
+  --color-darkContainer: #181e26;
+
+  --color-mainHover: #6d55b8;
+  --color-mainActive: #5a4799;
+  --color-mainLight: #a998e5;
+  --color-error: #e63946;
+  --color-success: #06d6a0;
+  --color-warning: #f4a261;
+}
+
+@layer utilities {
+  .container {
+    margin-inline: auto;
+  }
+}
+
+@layer components {
+  h1,
+  h2,
+  h3 {
+    @apply text-main;
+  }
+
+  h4,
+  h5,
+  h6,
+  p,
+  span {
+    @apply text-lightPrimary dark:text-darkPrimary;
+  }
+  .my-btn {
+    @apply px-6 py-3 rounded-xl font-semibold
+         bg-main text-white 
+         hover:bg-mainHover active:bg-mainActive 
+         shadow-md hover:shadow-lg active:scale-95 
+         focus:outline-none focus:ring-2 focus:ring-mainLight
+         transition-all duration-300 ease-in-out;
+  }
+  .my-btn:disabled {
+    @apply px-3 py-2 rounded-lg border
+         bg-gray-200 text-gray-500
+         disabled:cursor-not-allowed disabled:opacity-70
+         dark:bg-gray-700 dark:text-gray-400
+         dark:disabled:bg-gray-800 dark:disabled:text-gray-500;
+  }
+  input {
+    @apply w-full px-4 py-3 rounded-xl border border-lightSecondary dark:border-darkSecondary 
+         bg-white dark:bg-darkBgFill text-lightPrimary dark:text-darkPrimary 
+         placeholder-lightSecondary dark:placeholder-darkSecondary
+         focus:outline-none focus:ring-2 focus:ring-main focus:border-main
+         shadow-sm hover:shadow-md transition-all duration-300 ease-in-out;
+  }
+
+  textarea {
+    @apply w-full px-4 py-3 rounded-xl border border-lightSecondary dark:border-darkSecondary
+         bg-white dark:bg-darkBgFill text-lightPrimary dark:text-darkPrimary
+         placeholder-lightSecondary dark:placeholder-darkSecondary
+         focus:outline-none focus:ring-2 focus:ring-main focus:border-main
+         shadow-sm hover:shadow-md transition-all duration-300 ease-in-out
+         resize-y min-h-[120px] max-h-[300px];
+  }
+  .floating-label {
+    @apply absolute text-sm text-lightSecondary ps-2 dark:text-darkSecondary duration-300 transform -translate-y-8 scale-75 top-3  origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10 peer-focus:text-main transition-all;
+  }
+  .floating-input {
+    @apply block py-3 px-0 w-full text-sm text-lightPrimary ps-2 dark:text-darkPrimary bg-white dark:bg-darkBgFill border-0 border-b-2 border-gray-300 dark:border-none appearance-none focus:outline-none focus:ring-0 focus:border-main  transition-all duration-300;
+  }
+}
+
+owl-carousel-o .owl-theme .owl-dots .owl-dot.active span {
+  @apply bg-transparent border-2 border-main;
+}
+owl-carousel-o .owl-theme .owl-dots .owl-dot:hover span {
+  @apply bg-lightPrimary dark:bg-darkPrimary;
+}
+@custom-variant dark (&:where(.dark, .dark *));

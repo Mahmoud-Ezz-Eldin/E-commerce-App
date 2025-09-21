@@ -1,0 +1,53 @@
+<section class="py-12">
+  <div
+    class="bg-light-bg shadow-main shadow w-3/4 md:w-1/2 mx-auto rounded-xl py-8"
+  >
+    <h1 class="text-center text-5xl pb-4">Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submitData()">
+      <app-input
+        [control]="loginForm.get('email')"
+        [typeInput]="'text'"
+        [idInput]="'email'"
+        [label]="'email'"
+      ></app-input>
+      <app-input
+        [control]="loginForm.get('password')"
+        [typeInput]="'password'"
+        [idInput]="'password'"
+        [label]="'password'"
+      ></app-input>
+      <button
+        [disabled]="loginForm.invalid"
+        class="my-btn w-[80%] mx-auto block mb-6"
+        type="submit"
+      >
+        Login @if (isLoading()) {
+        <span
+          class="fa fa-spinner animate-spin text-lightPrimary dark:text-darkPrimary"
+        ></span>
+        }
+      </button>
+
+      @if (errorMessage()) {
+      <p
+        class="p-2 my-2 rounded-lg bg-red-300 text-red-600 w-[80%] mx-auto text-center"
+      >
+        {{ errorMessage() }}
+      </p>
+
+      } @if (loginSuccess()) {
+      <p
+        class="p-2 rounded-lg bg-green-300 text-green-600 w-[80%] mx-auto text-center"
+      >
+        Logging....
+        <span><i class="fa-solid fa-check text-green-600"></i></span>
+      </p>
+      }
+    </form>
+    <a
+      class="text-2xl text-main font-header flex justify-center cursor-pointer"
+      routerLink="/forgot"
+      >Forget Password ?</a
+    >
+  </div>
+</section>

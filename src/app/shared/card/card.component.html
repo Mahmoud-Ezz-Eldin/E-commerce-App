@@ -1,0 +1,28 @@
+<div
+  class="card shadow-md shadow-main rounded-lg bg-lightBg dark:bg-darkBgFill overflow-hidden group pb-2"
+>
+  <div
+    class="cursor-pointer"
+    [routerLink]="['/details', product().slug, product().id]"
+  >
+    <img [src]="product().imageCover" [alt]="product().title" class="w-full" />
+
+    <div class="card-detail p-2">
+      <h3 class="text-2xl">{{ product().category.name }}</h3>
+      <h4 class="mb-2 line-clamp-1">{{ product().title }}</h4>
+      <div class="flex justify-between items-center">
+        <span>{{ product().price | currency : "GBP" }} EGP</span>
+        <span
+          >{{ product().ratingsAverage }}
+          <i class="fas fa-star text-yellow-400"></i
+        ></span>
+      </div>
+    </div>
+  </div>
+  <button
+    (click)="addProductToCart(product()._id)"
+    class="my-btn w-11/12 block mx-auto opacity-0 p-1 translate-y-[50px] group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-600"
+  >
+    Add To Cart
+  </button>
+</div>

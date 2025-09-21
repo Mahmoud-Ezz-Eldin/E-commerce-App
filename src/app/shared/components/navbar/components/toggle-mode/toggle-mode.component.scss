@@ -1,0 +1,83 @@
+.myLabel {
+  width: 65px;
+  height: 30px;
+  position: relative;
+  display: block;
+  background: #ebebeb;
+  border-radius: 200px;
+  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.myLabel:after {
+  content: "";
+  width: 50%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 180px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.toggleInput {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+.toggleInput:checked + .myLabel {
+  background: #1e2939;
+}
+.toggleInput:checked + .myLabel:after {
+  left: 95%;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+}
+.myLabel:active:after {
+  width: 65%;
+}
+
+.myLabel svg {
+  position: absolute;
+  width: 40%;
+  top: 5%;
+  z-index: 100;
+}
+.myLabel .sun {
+  left: 5%;
+  fill: #ffff;
+  transition: 0.3s all ease-in-out;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+  -ms-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+}
+.myLabel .moon {
+  left: 55%;
+  fill: #7e7e7e;
+  transition: 0.3s all ease-in-out;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+  -ms-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+}
+.toggleInput:checked + .myLabel .sun {
+  fill: #7e7e7e;
+}
+.toggleInput:checked + .myLabel .moon {
+  fill: #fff;
+}

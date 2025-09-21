@@ -1,0 +1,25 @@
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background-color: var(--color-main);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.my-pagination ::ng-deep .ngx-pagination a {
+  background-color: transparent;
+  color: var(--color-main);
+}
+.my-pagination ::ng-deep .ngx-pagination a span,
+.my-pagination ::ng-deep .ngx-pagination li span {
+  background-color: transparent;
+  color: var(--color-main);
+  font-family: "Oregano";
+}
+
+.my-pagination ::ng-deep .ngx-pagination .disabled {
+  color: var(--color-mainActive);
+}
+.my-pagination ::ng-deep .ngx-pagination .current span {
+  color: #ffff;
+}

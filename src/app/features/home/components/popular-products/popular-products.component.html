@@ -1,0 +1,12 @@
+<section>
+  <div class="container">
+    <h2 class="text-4xl text-center">Popular Products</h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 py-5 md:gap-4 gap-8"
+    >
+      @for (product of productList().slice(0,12); track product.id) {
+      <app-card [product]="product"></app-card>
+      }
+    </div>
+  </div>
+</section>

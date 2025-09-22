@@ -22,10 +22,19 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
+      this.getLoggedUserData();
     });
   }
 
   signOut() {
     this.registerService.logOut();
+  }
+
+  getLoggedUserData() {
+    this.cartService.getLoggedUserCart().subscribe({
+      next: (res) => {
+        this.cartService.cartCounter.set(res.numOfCartItems);
+      },
+    });
   }
 }

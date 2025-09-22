@@ -31,6 +31,9 @@ export class CartComponent {
         console.log(res);
         this.cartId.set(res.cartId);
         this.cartDetails.set(res.data);
+
+        //update cart counter
+        this.cartService.cartCounter.set(res.numOfCartItems);
       },
     });
   }
@@ -54,6 +57,8 @@ export class CartComponent {
       next: (res) => {
         console.log(res);
         this.cartDetails.set(res.data);
+        //update cart counter
+        this.cartService.cartCounter.set(res.numOfCartItems);
       },
     });
   }
@@ -61,8 +66,9 @@ export class CartComponent {
   clearCart() {
     this.cartService.clearCart().subscribe({
       next: (res) => {
-        console.log(res);
+        console.log('asdsadsad', res);
         if (res.message === 'success') {
+          //update cart counter included
           this.getLoggedUserData();
           this.toastr.success('Cart Cleared Successfully !', 'ME Cart');
         }
